@@ -2,14 +2,14 @@ package be.ae.services.model;
 
 import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Generated;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Random;
 
 @Data
 public class Account {
-    @Generated
+
     @Setter(AccessLevel.NONE)
     private Integer id;
     private Type type;
@@ -17,4 +17,8 @@ public class Account {
     private String label;
     private List<String> owners;
     private MoneyAmount balance;
+
+    public Account() {
+        this.id = new Random().nextInt(1000);
+    }
 }

@@ -45,7 +45,7 @@ public class AccountController {
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand("myId")
+                .buildAndExpand(result.getId())
                 .toUri();
         return ResponseEntity.created(uri).build();
     }

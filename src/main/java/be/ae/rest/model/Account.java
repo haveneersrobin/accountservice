@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonValue;
+import lombok.Generated;
+import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -17,15 +20,16 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "label",
-    "type",
-    "owners",
-    "iban",
-    "moneyAmount"
+        "label",
+        "type",
+        "owners",
+        "iban",
+        "moneyAmount"
 })
 public class Account {
 
     @Setter
+    @Getter
     private Integer id;
 
     @JsonProperty("label")
@@ -119,7 +123,7 @@ public class Account {
         private final static Map<String, Account.Type> CONSTANTS = new HashMap<String, Account.Type>();
 
         static {
-            for (Account.Type c: values()) {
+            for (Account.Type c : values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
