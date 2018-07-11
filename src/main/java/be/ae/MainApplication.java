@@ -1,12 +1,12 @@
-package be.ae.accountservice;
+package be.ae;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AccountserviceApplication {
+public class MainApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AccountserviceApplication.class, args);
+		SpringApplication.run(MainApplication.class, args);
 	}
 }
