@@ -1,4 +1,4 @@
-package be.ae.accountservice;
+package be.ae;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
