@@ -6,6 +6,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import be.ae.rest.model.Account;
+import be.ae.services.AccountService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +25,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @RequestMapping("/api/accounts")
 public class AccountController {
 
+    @Autowired
+    private AccountService accountService;
 
     /**
      * Get list of accounts
@@ -37,6 +41,7 @@ public class AccountController {
      */
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<?> createAccount(@Valid @RequestBody Account account) {
+        Account result = accountService.createAccount(account);
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
