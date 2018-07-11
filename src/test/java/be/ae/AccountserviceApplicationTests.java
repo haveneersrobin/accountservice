@@ -1,4 +1,4 @@
-package be.ae.accountservice;
+package be.ae;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
