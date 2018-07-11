@@ -1,12 +1,19 @@
 package be.ae.services;
 
-import be.ae.rest.model.Account;
+import be.ae.services.mapper.AccountMapper;
+import be.ae.services.model.Account;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AccountService {
 
-    public Account createAccount(Account account) {
-        return new Account();
+    @Autowired
+    private AccountMapper accountMapper;
+
+    public be.ae.rest.model.Account createAccount(be.ae.rest.model.Account account) {
+        Account dataModelAccount = accountMapper.mapToDataModel(account);
+        account.setId(dataModelAccount.getId());
+        return account;
     }
 }
