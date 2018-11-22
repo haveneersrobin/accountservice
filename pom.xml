@@ -53,42 +53,12 @@
 			<version>1.18.4</version>
 		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>com.phoenixnap.oss</groupId>
-				<artifactId>springmvc-raml-plugin</artifactId>
-				<version>0.10.2</version>
-				<configuration>
-					<ramlPath>src/main/resources/api.raml</ramlPath>
-					<schemaLocation>src/main/resources/schema/</schemaLocation>
-					<outputRelativePath>/target/generated-classes</outputRelativePath>
-					<addTimestampFolder>false</addTimestampFolder>
-					<basePackage>be.ae.rest</basePackage>
-					<baseUri>/api</baseUri>
-					<generateUnreferencedSchemas>true</generateUnreferencedSchemas>
-					<generationConfig>
-						<includeAdditionalProperties>false</includeAdditionalProperties>
-					</generationConfig>
-					<seperateMethodsByContentType>false</seperateMethodsByContentType>
-					<rule>com.phoenixnap.oss.ramlapisync.generation.rules.Spring4ControllerStubRule</rule>
-					<ruleConfiguration>
-					</ruleConfiguration>
-				</configuration>
-				<executions>
-					<execution>
-						<id>generate-springmvc-endpoints</id>
-						<phase>compile</phase>
-						<goals>
-							<goal>generate-springmvc-endpoints</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>
