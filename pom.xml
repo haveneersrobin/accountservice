@@ -52,17 +52,6 @@
             <version>5.2.4.Final</version>
         </dependency>
 	</dependencies>
-
-	<repositories>
-		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
 	
 	<build>
 		<plugins>
