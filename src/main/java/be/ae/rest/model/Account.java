@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -27,12 +29,15 @@ public class Account {
     @JsonProperty("label")
     private String label;
     @JsonProperty("type")
-    private Account.Type type;
+    private Type type;
     @JsonProperty("owners")
+    @Valid
     private List<String> owners = new ArrayList<String>();
     @JsonProperty("iban")
+    @Pattern(regexp = "[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{4}[0-9]{7}([a-zA-Z0-9]?){0,16}")
     private String iban;
     @JsonProperty("moneyAmount")
+    @Valid
     private MoneyAmount moneyAmount;
 
     @JsonProperty("label")
@@ -46,12 +51,12 @@ public class Account {
     }
 
     @JsonProperty("type")
-    public Account.Type getType() {
+    public Type getType() {
         return type;
     }
 
     @JsonProperty("type")
-    public void setType(Account.Type type) {
+    public void setType(Type type) {
         this.type = type;
     }
 
@@ -87,12 +92,12 @@ public class Account {
 
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this);
+        return new ToStringBuilder(this).append("label", label).append("type", type).append("owners", owners).append("iban", iban).append("moneyAmount", moneyAmount).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(label).append(type).append(owners).append(iban).append(moneyAmount).toHashCode();
+        return new HashCodeBuilder().append(owners).append(label).append(type).append(iban).append(moneyAmount).toHashCode();
     }
 
     @Override
@@ -104,7 +109,7 @@ public class Account {
             return false;
         }
         Account rhs = ((Account) other);
-        return new EqualsBuilder().append(label, rhs.label).append(type, rhs.type).append(owners, rhs.owners).append(iban, rhs.iban).append(moneyAmount, rhs.moneyAmount).isEquals();
+        return new EqualsBuilder().append(owners, rhs.owners).append(label, rhs.label).append(type, rhs.type).append(iban, rhs.iban).append(moneyAmount, rhs.moneyAmount).isEquals();
     }
 
     public enum Type {
@@ -112,10 +117,10 @@ public class Account {
         CHECKINGS("checkings"),
         SAVINGS("savings");
         private final String value;
-        private final static Map<String, Account.Type> CONSTANTS = new HashMap<String, Account.Type>();
+        private final static Map<String, Type> CONSTANTS = new HashMap<String, Type>();
 
         static {
-            for (Account.Type c: values()) {
+            for (Type c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
@@ -135,8 +140,8 @@ public class Account {
         }
 
         @JsonCreator
-        public static Account.Type fromValue(String value) {
-            Account.Type constant = CONSTANTS.get(value);
+        public static Type fromValue(String value) {
+            Type constant = CONSTANTS.get(value);
             if (constant == null) {
                 throw new IllegalArgumentException(value);
             } else {

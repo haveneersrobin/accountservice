@@ -42,7 +42,7 @@ public class MoneyAmount {
 
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this);
+        return new ToStringBuilder(this).append("amount", amount).append("currency", currency).toString();
     }
 
     @Override

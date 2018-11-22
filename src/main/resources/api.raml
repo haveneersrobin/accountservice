@@ -1,11 +1,11 @@
-#%RAML 0.8
+#%RAML 1.0
 title: AccountService
 version: v1
 baseUri: http://localhost:8080/api
 schemas:
-  - accounts: !include schemas/accounts.schema.json
-  - account: !include schemas/account.schema.json
-  - errorResource: !include schemas/errorResource.schema.json
+  accounts: !include schemas/accounts.schema.json
+  account: !include schemas/account.schema.json
+  errorResource: !include schemas/errorResource.schema.json
 
 /accounts:
   get:
@@ -16,7 +16,6 @@ schemas:
         body:
           application/json:
             schema: accounts
-            example: !include examples/accounts.example.json
       404:
         description: Nothing found for your request
         body:
@@ -32,7 +31,6 @@ schemas:
     body:
       application/json:
        schema: account
-       example: !include examples/account.example.json
     responses:
       201:
         description: Object created succesfully.
@@ -56,7 +54,6 @@ schemas:
             body:
               application/json:
                 schema: account
-                example: !include examples/account.example.json
           404:
             description: Nothing found for your request
             body:
