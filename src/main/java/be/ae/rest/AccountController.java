@@ -37,7 +37,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 @Api(value = "accounts", description = "the accounts API")
 @RequestMapping(value = "/api")
 @Controller
-public class AccountsApiController {
+public class AccountController {
 
     @ApiOperation(value = "", nickname = "accountsAccountIdDelete", notes = "Delete account", tags={  })
     @ApiResponses(value = { 
