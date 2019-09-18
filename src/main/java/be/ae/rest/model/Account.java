@@ -1,157 +1,225 @@
-
 package be.ae.rest.model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonValue;
-import lombok.Generated;
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-        "label",
-        "type",
-        "owners",
-        "iban",
-        "moneyAmount"
-})
-public class Account {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
-    @Setter
-    @Getter
-    private Integer id;
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
 
-    @JsonProperty("label")
-    private String label;
-    @JsonProperty("type")
-    private Account.Type type;
-    @JsonProperty("owners")
-    private List<String> owners = new ArrayList<String>();
-    @JsonProperty("iban")
-    private String iban;
-    @JsonProperty("moneyAmount")
-    private MoneyAmount moneyAmount;
+import io.swagger.annotations.ApiModelProperty;
 
-    @JsonProperty("label")
-    public String getLabel() {
-        return label;
-    }
+/**
+ * Account
+ */
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-09-18T19:21:46.135547+02:00[Europe/Brussels]")
 
-    @JsonProperty("label")
-    public void setLabel(String label) {
-        this.label = label;
-    }
+public class Account   {
+  @JsonProperty("label")
+  private String label;
 
-    @JsonProperty("type")
-    public Account.Type getType() {
-        return type;
-    }
+  /**
+   * Gets or Sets type
+   */
+  public enum TypeEnum {
+    CHECKINGS("checkings"),
+    
+    SAVINGS("savings");
 
-    @JsonProperty("type")
-    public void setType(Account.Type type) {
-        this.type = type;
-    }
+    private String value;
 
-    @JsonProperty("owners")
-    public List<String> getOwners() {
-        return owners;
-    }
-
-    @JsonProperty("owners")
-    public void setOwners(List<String> owners) {
-        this.owners = owners;
-    }
-
-    @JsonProperty("iban")
-    public String getIban() {
-        return iban;
-    }
-
-    @JsonProperty("iban")
-    public void setIban(String iban) {
-        this.iban = iban;
-    }
-
-    @JsonProperty("moneyAmount")
-    public MoneyAmount getMoneyAmount() {
-        return moneyAmount;
-    }
-
-    @JsonProperty("moneyAmount")
-    public void setMoneyAmount(MoneyAmount moneyAmount) {
-        this.moneyAmount = moneyAmount;
+    TypeEnum(String value) {
+      this.value = value;
     }
 
     @Override
+    @JsonValue
     public String toString() {
-        return ToStringBuilder.reflectionToString(this);
+      return String.valueOf(value);
     }
 
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder().append(label).append(type).append(owners).append(iban).append(moneyAmount).toHashCode();
+    @JsonCreator
+    public static TypeEnum fromValue(String value) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
+  }
 
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if ((other instanceof Account) == false) {
-            return false;
-        }
-        Account rhs = ((Account) other);
-        return new EqualsBuilder().append(label, rhs.label).append(type, rhs.type).append(owners, rhs.owners).append(iban, rhs.iban).append(moneyAmount, rhs.moneyAmount).isEquals();
+  @JsonProperty("type")
+  private TypeEnum type;
+
+  @JsonProperty("owners")
+  @Valid
+  private List<String> owners = null;
+
+  @JsonProperty("iban")
+  private String iban;
+
+  @JsonProperty("moneyAmount")
+  private MoneyAmount moneyAmount;
+
+  public Account label(String label) {
+    this.label = label;
+    return this;
+  }
+
+  /**
+   * Get label
+   * @return label
+  */
+  @ApiModelProperty(value = "")
+
+
+  public String getLabel() {
+    return label;
+  }
+
+  public void setLabel(String label) {
+    this.label = label;
+  }
+
+  public Account type(TypeEnum type) {
+    this.type = type;
+    return this;
+  }
+
+  /**
+   * Get type
+   * @return type
+  */
+  @ApiModelProperty(value = "")
+
+
+  public TypeEnum getType() {
+    return type;
+  }
+
+  public void setType(TypeEnum type) {
+    this.type = type;
+  }
+
+  public Account owners(List<String> owners) {
+    this.owners = owners;
+    return this;
+  }
+
+  public Account addOwnersItem(String ownersItem) {
+    if (this.owners == null) {
+      this.owners = new ArrayList<>();
     }
+    this.owners.add(ownersItem);
+    return this;
+  }
 
-    public enum Type {
+  /**
+   * Get owners
+   * @return owners
+  */
+  @ApiModelProperty(value = "")
 
-        CHECKINGS("checkings"),
-        SAVINGS("savings");
-        private final String value;
-        private final static Map<String, Account.Type> CONSTANTS = new HashMap<String, Account.Type>();
 
-        static {
-            for (Account.Type c : values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
+  public List<String> getOwners() {
+    return owners;
+  }
 
-        private Type(String value) {
-            this.value = value;
-        }
+  public void setOwners(List<String> owners) {
+    this.owners = owners;
+  }
 
-        @Override
-        public String toString() {
-            return this.value;
-        }
+  public Account iban(String iban) {
+    this.iban = iban;
+    return this;
+  }
 
-        @JsonValue
-        public String value() {
-            return this.value;
-        }
+  /**
+   * Get iban
+   * @return iban
+  */
+  @ApiModelProperty(value = "")
 
-        @JsonCreator
-        public static Account.Type fromValue(String value) {
-            Account.Type constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException(value);
-            } else {
-                return constant;
-            }
-        }
+@Pattern(regexp="[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{4}[0-9]{7}([a-zA-Z0-9]?){0,16}") 
+  public String getIban() {
+    return iban;
+  }
 
+  public void setIban(String iban) {
+    this.iban = iban;
+  }
+
+  public Account moneyAmount(MoneyAmount moneyAmount) {
+    this.moneyAmount = moneyAmount;
+    return this;
+  }
+
+  /**
+   * Get moneyAmount
+   * @return moneyAmount
+  */
+  @ApiModelProperty(value = "")
+
+  @Valid
+
+  public MoneyAmount getMoneyAmount() {
+    return moneyAmount;
+  }
+
+  public void setMoneyAmount(MoneyAmount moneyAmount) {
+    this.moneyAmount = moneyAmount;
+  }
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Account account = (Account) o;
+    return Objects.equals(this.label, account.label) &&
+        Objects.equals(this.type, account.type) &&
+        Objects.equals(this.owners, account.owners) &&
+        Objects.equals(this.iban, account.iban) &&
+        Objects.equals(this.moneyAmount, account.moneyAmount);
+  }
 
+  @Override
+  public int hashCode() {
+    return Objects.hash(label, type, owners, iban, moneyAmount);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class Account {\n");
+
+    sb.append("    label: ").append(toIndentedString(label)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    owners: ").append(toIndentedString(owners)).append("\n");
+    sb.append("    iban: ").append(toIndentedString(iban)).append("\n");
+    sb.append("    moneyAmount: ").append(toIndentedString(moneyAmount)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
 }
+

@@ -1,65 +1,102 @@
-
 package be.ae.rest.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "id",
-    "message"
-})
-public class ErrorResource {
+import java.util.Objects;
 
-    @JsonProperty("id")
-    private String id;
-    @JsonProperty("message")
-    private String message;
+import io.swagger.annotations.ApiModelProperty;
 
-    @JsonProperty("id")
-    public String getId() {
-        return id;
+/**
+ * ErrorResource
+ */
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-09-18T19:21:46.135547+02:00[Europe/Brussels]")
+
+public class ErrorResource   {
+  @JsonProperty("id")
+  private String id;
+
+  @JsonProperty("message")
+  private String message;
+
+  public ErrorResource id(String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+  */
+  @ApiModelProperty(value = "")
+
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public ErrorResource message(String message) {
+    this.message = message;
+    return this;
+  }
+
+  /**
+   * Get message
+   * @return message
+  */
+  @ApiModelProperty(value = "")
+
+
+  public String getMessage() {
+    return message;
+  }
+
+  public void setMessage(String message) {
+    this.message = message;
+  }
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    @JsonProperty("id")
-    public void setId(String id) {
-        this.id = id;
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    ErrorResource errorResource = (ErrorResource) o;
+    return Objects.equals(this.id, errorResource.id) &&
+        Objects.equals(this.message, errorResource.message);
+  }
 
-    @JsonProperty("message")
-    public String getMessage() {
-        return message;
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, message);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class ErrorResource {\n");
+
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
     }
-
-    @JsonProperty("message")
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this);
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder().append(id).append(message).toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if ((other instanceof ErrorResource) == false) {
-            return false;
-        }
-        ErrorResource rhs = ((ErrorResource) other);
-        return new EqualsBuilder().append(id, rhs.id).append(message, rhs.message).isEquals();
-    }
-
+    return o.toString().replace("\n", "\n    ");
+  }
 }
+

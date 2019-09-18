@@ -59,6 +59,20 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>1.5.23</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>jackson-databind-nullable</artifactId>
+			<version>0.2.0</version>
+		</dependency>
+
+
 	</dependencies>
 
 	<dependencyManagement>
@@ -80,34 +94,30 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
-				<groupId>com.phoenixnap.oss</groupId>
-				<artifactId>springmvc-raml-plugin</artifactId>
-				<version>0.10.2</version>
-				<configuration>
-					<ramlPath>src/main/resources/api.raml</ramlPath>
-					<schemaLocation>src/main/resources/schema/</schemaLocation>
-					<outputRelativePath>/target/generated-classes</outputRelativePath>
-					<addTimestampFolder>false</addTimestampFolder>
-					<basePackage>be.ae.rest</basePackage>
-					<baseUri>/api</baseUri>
-					<generateUnreferencedSchemas>true</generateUnreferencedSchemas>
-					<generationConfig>
-						<includeAdditionalProperties>false</includeAdditionalProperties>
-					</generationConfig>
-					<seperateMethodsByContentType>false</seperateMethodsByContentType>
-					<rule>com.phoenixnap.oss.ramlapisync.generation.rules.Spring4ControllerStubRule</rule>
-					<ruleConfiguration></ruleConfiguration>
-					<outputRamlFilePath/>
-					<ramlToVerifyPath/>
-					<restBasePath/>
-				</configuration>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<version>4.1.2</version>
 				<executions>
 					<execution>
-						<id>generate-springmvc-endpoints</id>
-						<phase>compile</phase>
+						<id>spring-boot-api</id>
 						<goals>
-							<goal>generate-springmvc-endpoints</goal>
+							<goal>generate</goal>
 						</goals>
+						<configuration>
+							<inputSpec>${project.basedir}/src/main/resources/api.yml</inputSpec>
+							<generatorName>spring</generatorName>
+							<library>spring-mvc</library>
+							<apiPackage>be.ae.accountservice.rest</apiPackage>
+							<modelPackage>be.ae.accountservice.rest.model</modelPackage>
+							<invokerPackage>be.ae.accountservice.handler</invokerPackage>
+
+							<generateApiTests>false</generateApiTests>
+							<generateApiDocumentation>false</generateApiDocumentation>
+							<generateModelDocumentation>false</generateModelDocumentation>
+							<generateModelTests>false</generateModelTests>
+
+							<supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>

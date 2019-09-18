@@ -1,65 +1,106 @@
-
 package be.ae.rest.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "amount",
-    "currency"
-})
+import java.math.BigDecimal;
+import java.util.Objects;
+
+import javax.validation.Valid;
+
+import io.swagger.annotations.ApiModelProperty;
+
+/**
+ * MoneyAmount
+ */
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-09-18T19:21:46.135547+02:00[Europe/Brussels]")
+
 public class MoneyAmount {
+  @JsonProperty("amount")
+  private BigDecimal amount;
 
-    @JsonProperty("amount")
-    private Float amount;
-    @JsonProperty("currency")
-    private String currency;
+  @JsonProperty("currency")
+  private String currency;
 
-    @JsonProperty("amount")
-    public Float getAmount() {
-        return amount;
+  public MoneyAmount amount(BigDecimal amount) {
+    this.amount = amount;
+    return this;
+  }
+
+  /**
+   * Get amount
+   * @return amount
+  */
+  @ApiModelProperty(value = "")
+
+  @Valid
+
+  public BigDecimal getAmount() {
+    return amount;
+  }
+
+  public void setAmount(BigDecimal amount) {
+    this.amount = amount;
+  }
+
+  public MoneyAmount currency(String currency) {
+    this.currency = currency;
+    return this;
+  }
+
+  /**
+   * Get currency
+   * @return currency
+  */
+  @ApiModelProperty(value = "")
+
+
+  public String getCurrency() {
+    return currency;
+  }
+
+  public void setCurrency(String currency) {
+    this.currency = currency;
+  }
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    @JsonProperty("amount")
-    public void setAmount(Float amount) {
-        this.amount = amount;
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    MoneyAmount moneyAmount = (MoneyAmount) o;
+    return Objects.equals(this.amount, moneyAmount.amount) &&
+        Objects.equals(this.currency, moneyAmount.currency);
+  }
 
-    @JsonProperty("currency")
-    public String getCurrency() {
-        return currency;
+  @Override
+  public int hashCode() {
+    return Objects.hash(amount, currency);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class MoneyAmount {\n");
+
+    sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
+    sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
     }
-
-    @JsonProperty("currency")
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
-
-    @Override
-    public String toString() {
-        return org.apache.commons.lang.builder.ToStringBuilder.reflectionToString(this);
-    }
-
-    @Override
-    public int hashCode() {
-        return new org.apache.commons.lang.builder.HashCodeBuilder().append(amount).append(currency).toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if ((other instanceof MoneyAmount) == false) {
-            return false;
-        }
-        MoneyAmount rhs = ((MoneyAmount) other);
-        return new EqualsBuilder().append(amount, rhs.amount).append(currency, rhs.currency).isEquals();
-    }
-
+    return o.toString().replace("\n", "\n    ");
+  }
 }
+
