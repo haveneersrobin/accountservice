@@ -39,36 +39,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 @Controller
 public class AccountController {
 
-    @ApiOperation(value = "", nickname = "accountsAccountIdDelete", notes = "Delete account", tags={  })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 204, message = "Account deleted"),
-        @ApiResponse(code = 404, message = "Nothing found for your request", response = ErrorResource.class),
-        @ApiResponse(code = 500, message = "Internal server error", response = ErrorResource.class) })
-    @RequestMapping(value = "/accounts/{accountId}",
-        produces = { "application/json" }, 
-        method = RequestMethod.DELETE)
-    public ResponseEntity<Void> accountsAccountIdDelete(
-        @ApiParam(value = "The id of the account", required = true) @PathVariable("accountId") String accountId) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
-    }
-
-
-    @ApiOperation(value = "", nickname = "accountsAccountIdGet", notes = "Retrieve account details", response = Account.class, tags={  })
-    @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Successful request", response = Account.class),
-        @ApiResponse(code = 404, message = "Nothing found for your request", response = ErrorResource.class),
-        @ApiResponse(code = 500, message = "Internal server error", response = ErrorResource.class) })
-    @RequestMapping(value = "/accounts/{accountId}",
-        produces = { "application/json" },
-        method = RequestMethod.GET)
-    public ResponseEntity<Account> accountsAccountIdGet(
-        @ApiParam(value = "The id of the account", required = true) @PathVariable("accountId") String accountId) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-    }
-
-
-    @ApiOperation(value = "Get list of accounts", nickname = "accountsGet", notes = "", response = Object.class, responseContainer = "List", tags={  })
+    @ApiOperation(value = "Get list of accounts", nickname = "getAccounts", notes = "", response = Object.class, responseContainer = "List", tags={  })
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Successful request", response = Object.class, responseContainer = "List"),
         @ApiResponse(code = 404, message = "Nothing found for your request", response = ErrorResource.class),
@@ -76,12 +47,24 @@ public class AccountController {
     @RequestMapping(value = "/accounts",
         produces = { "application/json" },
         method = RequestMethod.GET)
-    public ResponseEntity<List<Object>> accountsGet() {
+    public ResponseEntity<List<Account>> getAccounts() {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
+    @ApiOperation(value = "", nickname = "getAccountById", notes = "Retrieve account details", response = Account.class, tags={  })
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Successful request", response = Account.class),
+        @ApiResponse(code = 404, message = "Nothing found for your request", response = ErrorResource.class),
+        @ApiResponse(code = 500, message = "Internal server error", response = ErrorResource.class) })
+    @RequestMapping(value = "/accounts/{accountId}",
+        produces = { "application/json" },
+        method = RequestMethod.GET)
+    public ResponseEntity<Account> getAccountById(
+        @ApiParam(value = "The id of the account", required = true) @PathVariable("accountId") String accountId) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
 
-    @ApiOperation(value = "Create new account", nickname = "accountsPost", notes = "", tags={  })
+    @ApiOperation(value = "Create new account", nickname = "createAccount", notes = "", tags={  })
     @ApiResponses(value = {
         @ApiResponse(code = 201, message = "Object craeted successfully"),
         @ApiResponse(code = 400, message = "Bad request. The provided input does not comply to the contract.", response = ErrorResource.class),
@@ -90,7 +73,21 @@ public class AccountController {
         produces = { "application/json" },
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    public ResponseEntity<Void> accountsPost(@ApiParam(value = "") @Valid @RequestBody Account account) {
+    public ResponseEntity<Void> createAccount(@ApiParam(value = "") @Valid @RequestBody Account account) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+    @ApiOperation(value = "", nickname = "deleteAccountById", notes = "Delete account", tags={  })
+    @ApiResponses(value = {
+        @ApiResponse(code = 204, message = "Account deleted"),
+        @ApiResponse(code = 404, message = "Nothing found for your request", response = ErrorResource.class),
+        @ApiResponse(code = 500, message = "Internal server error", response = ErrorResource.class) })
+    @RequestMapping(value = "/accounts/{accountId}",
+        produces = { "application/json" },
+        method = RequestMethod.DELETE)
+    public ResponseEntity<Void> deleteAccountById(
+        @ApiParam(value = "The id of the account", required = true) @PathVariable("accountId") String accountId) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
