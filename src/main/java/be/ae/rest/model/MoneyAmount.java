@@ -42,12 +42,12 @@ public class MoneyAmount {
 
     @Override
     public String toString() {
-        return org.apache.commons.lang.builder.ToStringBuilder.reflectionToString(this);
+        return ToStringBuilder.reflectionToString(this);
     }
 
     @Override
     public int hashCode() {
-        return new org.apache.commons.lang.builder.HashCodeBuilder().append(amount).append(currency).toHashCode();
+        return new HashCodeBuilder().append(amount).append(currency).toHashCode();
     }
 
     @Override

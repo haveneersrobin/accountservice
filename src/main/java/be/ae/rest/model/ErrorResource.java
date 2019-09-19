@@ -20,6 +20,11 @@ public class ErrorResource {
     @JsonProperty("message")
     private String message;
 
+    public ErrorResource(String id, String message) {
+        this.id = id;
+        this.message = message;
+    }
+
     @JsonProperty("id")
     public String getId() {
         return id;
